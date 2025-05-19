@@ -1,45 +1,45 @@
-import type { Timestamp } from 'firebase/firestore';
+import type { User } from '@supabase/supabase-js';
 
 export interface UserProfile {
-  uid: string;
+  id: string;
   email: string | null;
-  displayName?: string | null;
-  photoURL?: string | null;
-  // App-specific settings
-  themePreference?: 'light' | 'dark' | 'system';
+  display_name?: string | null;
+  avatar_url?: string | null;
+  theme_preference?: 'light' | 'dark' | 'system';
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Category {
   id: string;
-  userId: string;
+  user_id: string;
   name: string;
-  color: string; // Hex color, e.g., '#FF0000'
-  icon: string; // Lucide icon name, e.g., 'Briefcase'
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  color: string;
+  icon: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Task {
   id: string;
-  userId: string;
+  user_id: string;
   title: string;
   description?: string;
-  categoryId: string;
-  estimatedTime?: number; // in minutes
-  actualTimeSpent?: number; // in minutes
-  dueDate?: Timestamp | null;
-  reminderTime?: Timestamp | null;
-  isRecurring: boolean;
-  recurrencePattern?: 'daily' | 'weekly' | 'monthly'; // Simplified for now
-  isCompleted: boolean;
-  completedAt?: Timestamp | null;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  category_id: string;
+  estimated_time?: number;
+  actual_time_spent?: number;
+  due_date?: string | null;
+  reminder_time?: string | null;
+  is_recurring: boolean;
+  recurrence_pattern?: 'daily' | 'weekly' | 'monthly';
+  is_completed: boolean;
+  completed_at?: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
-// For AI Smart Schedule input
 export interface PastTaskEntry {
-  taskType: string;
-  duration: string; // e.g., "2 hours", "30 minutes"
-  timeOfDay: string; // e.g., "morning", "afternoon", "evening", "9 AM"
+  task_type: string;
+  duration: string;
+  time_of_day: string;
 }
